@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+    
+
+    <div class="main">
+        <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+              
+    
+                <div class="signin-form">
+                    <h2 class="form-title">Welcome to our Page</h2>
+
+                    {% if message %}  
+                    <p><strong>User </strong></p> {{message}} <br>
+                            {% endif %} 
+                      <a href="{{ url_for('index')}}" > <button class="w3-button w3-block w3-teal">Login</button> </a> <br>
+                      <a href="{{ url_for('logout') }}">  <button class="w3-button w3-block w3-teal">Logout</button></a>
+                      <br>
+                      <a href="{{ url_for('upload')}}" > <button class="w3-button w3-block w3-teal">Genre Prediction</button> </a> 
+                      
+                    </div>
+            </div>
+        </div>
+    </section>
+        </div>
+    
+
+</body>
+
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</html>

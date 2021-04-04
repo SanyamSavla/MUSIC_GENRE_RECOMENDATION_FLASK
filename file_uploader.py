@@ -3,7 +3,14 @@ from flask import *
 import pickle
 import librosa
 import numpy as np
+import bcrypt
 from sklearn.preprocessing import MinMaxScaler
+from os import path
+from pydub import AudioSegment
+from flask import Flask, render_template, request, redirect, url_for, session
+from flask_pymongo import PyMongo
+import re
+
 
 app = Flask(__name__,template_folder='template')
 
@@ -12,6 +19,57 @@ scaler = pickle.load(open('scaler.pkl','rb'))
 #model = joblib.load('model_4.mdl')
 
 
+app.config['MONGO_DBNAME'] = 'mip'
+app.config['MONGO_URI'] = 'mongodb+srv://sanyam:sanyam@cluster0.s7zmx.mongodb.net/test'
+mongo = PyMongo(app)
+
+#login
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/')
+def index():
+    if 'name' in session:
+        message='You are logged in as ' + session['name']
+        return render_template('home.html',message=message) 
+
+    return render_template('signin.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('name',None)
+    return redirect(url_for('index'))
+
+@app.route('/login', methods=['POST'])
+def login():
+    error=None
+    users = mongo.db.users
+    login_user = users.find_one({'name' : request.form['name']})
+    hashed=login_user['password'].decode('utf-8')
+    if login_user:
+        if bcrypt.hashpw(request.form['password'].encode('utf-8'), (hashed)) == (hashed):
+            session['name'] = request.form['name']
+            return redirect(url_for('index'))
+        
+    error='Invalid username/password combination'
+    return render_template('signin.html',error=error)  
+
+@app.route('/register', methods=['POST', 'GET'])
+def register():
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name' : request.form['name']})
+
+        if existing_user is None:
+            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
+            users.insert({'name' : request.form['name'], 'password' : (hashpass)})
+            session['name'] = request.form['name']
+            return redirect(url_for('index'))
+        
+        return 'That username already exists!'
+
+    return render_template('index.html')
 
 def getmetadata(filename):
     y, sr = librosa.load(filename)
@@ -86,4 +144,7 @@ def success():
         return render_template("success.html", name = file_name, genre = genre_name)
 
 if __name__ == '__main__':
+    
+    app.secret_key = 'mysecret'
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug = True)

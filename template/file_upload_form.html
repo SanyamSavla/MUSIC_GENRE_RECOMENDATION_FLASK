@@ -1,12 +1,44 @@
 <html>
 <head>
     <title>upload</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 <body>
-    <h3> Please only upload wav file only </h3> 
-    <form action = "/success" method = "post" enctype="multipart/form-data">
-        <input type="file" name="file" />
-        <input type = "submit" value="Upload">
-    </form>
+    <div class="main">
+        <section class="sign-in">
+        <div class="container">
+            <form action = "/success" method = "post" enctype="multipart/form-data">
+            <div class="signin-content">
+              
+               
+                <div class="signin-form" >
+                    <h3> Please only upload wav file only </h3> 
+                    <br>
+                      <input type="file" name="file" /><br>
+                        <input type = "submit" value="Upload">
+                    </div>
+                   
+                        
+                    </form>
+            </div>
+        </div>
+    </section>
+        </div>
+
+   
+  
 </body>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
 </html>
