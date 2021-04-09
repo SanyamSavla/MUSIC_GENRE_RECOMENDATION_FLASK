@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description">
+		<meta name="keywords" content="Your,Keywords">
+		<meta name="author" content="HimanshuGupta">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link href="{{ url_for('static', filename='home/css/bootstrap.min.css')}}" rel="stylesheet">	
+		<!-- Animate CSS -->
+		<link href="{{ url_for('static', filename='home/css/animate.min.css')}}" rel="stylesheet">
+		<!-- Basic stylesheet -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='home/css/owl.carousel.css')}}">
+		<!-- Font awesome CSS -->
+		<link href="{{ url_for('static', filename='home/css/font-awesome.min.css')}}" rel="stylesheet">		
+		<!-- Custom CSS -->
+		<link href="{{ url_for('static', filename='home/css/style.css')}}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='home/css/style-color.css')}}" rel="stylesheet">
+		
+		</head>
+	
+	<body>
+		
+		<!-- modal for booking ticket form -->
+		<div class="modal fade" id="bookTicket" tabindex="-1" role="dialog" aria-labelledby="BookTicket">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Name of The Event &nbsp; <small><span class="label label-success">Available</span> &nbsp; <span class="label label-danger">Not Available</span></small></h4>
+					</div> 
+				</div>
+			</div>
+		</div>
+		
+		<!-- wrapper -->
+		<div class="wrapper" id="home">
+		
+			<!-- header area -->
+			<header>
+				<!-- secondary menu -->
+				<nav class="secondary-menu">
+					<div class="container">
+						<!-- secondary menu left link area -->
+					
+						<!-- secondary menu right link area -->
+						<div class="sm-right">
+							<!-- social link -->
+							<div class="sm-social-link">
+								<a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+								<a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+								<a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+								<a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</nav>
+				<!-- primary menu -->
+				<nav class="navbar navbar-fixed-top navbar-default">
+					<div class="container">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<!-- logo area -->
+							<a class="navbar-brand" href="#home">
+								<!-- logo image -->
+							
+							</a>
+						</div>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+                                {% if message %}  
+                                <p><strong>User </strong></p> {{message}} <br>
+                                        {% endif %} 
+								<li><a href="{{'register'}}">Register</a></li>
+								<li><a href="{{ url_for('index')}}">Login</a></li>
+                                {% if text %}  
+                                <li><a href="{{url_for('upload')}}">Genre Prediction </a></li>
+								<li><a href="{{ url_for('logout') }}">Logout</a></li>
+                                {% endif %}  
+								<li><a href="#contact">Contact</a></li>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+							</ul>
+						</div><!-- /.navbar-collapse -->
+					</div><!-- /.container-fluid -->
+				</nav>
+			</header>
+			<!--/ header end -->
+			
+			<!-- banner area -->
+			<div class="banner">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="{{ url_for('static', filename='home/img/banner/b1.jpg')}}" alt="...">
+							<div class="container">
+								<!-- banner caption -->
+								<div class="carousel-caption slide-one">
+									<!-- heading -->
+									<h2 class="animated fadeInLeftBig"><i class="fa fa-music"></i>For You!</h2>
+									<!-- paragraph -->
+									<h3 class="animated fadeInRightBig">Find Genre of your Song &amp; Find your favourite Music Albums.</h3>
+									<!-- button -->
+									<a href="#" class="animated fadeIn btn btn-theme">Check Here</a>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<img src="{{ url_for('static', filename='home/img/banner/b2.jpg')}}" alt="...">
+							<div class="container">
+								<!-- banner caption -->
+								<div class="carousel-caption slide-two">
+									<!-- heading -->
+									<h2 class="animated fadeInLeftBig"><i class="fa fa-headphones"></i> Listen It...</h2>
+									<!-- paragraph -->
+									<h3 class="animated fadeInRightBig"></h3>
+									<!-- button -->
+									<a href="#" class="animated fadeIn btn btn-theme">Find Genre and Listen Now</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+						<span class="fa fa-arrow-left" aria-hidden="true"></span>
+					</a>
+					<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+						<span class="fa fa-arrow-right" aria-hidden="true"></span>
+					</a>
+				</div>
+			</div>
+			<!--/ banner end -->
+			
+			<!-- block for animate navigation menu -->
+			<div class="nav-animate"></div>
+			
+		
+			
+			<!-- promo -->
+			<div class="promo parallax-one pad">
+				<div class="container">
+					<!-- promo element -->
+					<div class="promo-element ">
+						<!-- heading -->
+						<h3>Music An Art...</h3>
+						<!-- paragraph -->
+						<p>Music is an art form and cultural activity whose medium is sound organized in time. The common elements of music are <strong>pitch</strong>, <strong>rhythm</strong>, <strong>dynamics</strong> and the sonic qualities of <strong>timbre</strong> and <strong>texture</strong>.</p>
+						<!-- link -->
+						<a class="promo-link" href="#"><i class="fa fa-play-circle"></i></a>
+					</div>
+				</div>
+			</div>
+			<!--/ promo end -->
+			
+		
+			<!-- news letter -->
+			<div class="news-letter">
+				<div class="container">
+					<!-- news letter inner content -->
+					<div class="news-content ">
+						<!-- heading -->
+						<h3>Sign Up For Newsletter</h3>
+						<!-- paragraph -->
+						<p><strong>Contact Us</strong> and let us know if you have any questions, Don't forget to subscribe for more awesome stuff by typing mail bellow.</p>
+						<!-- subscribe form -->
+						<form>
+							<div class="input-group">
+								<input type="text" class="form-control input-lg" placeholder="Email">
+								<span class="input-group-btn">
+									<button class="btn btn-default btn-lg" type="button">Subscribe</button>
+								</span>
+							</div><!-- /input-group -->
+						</form>
+					</div>
+				</div>
+			</div>
+			<!-- news letter end -->
+			
+		
+			<!-- work with us end -->
+			
+			<!-- contact -->
+			<div class="contact pad" id="contact">
+				<div class="container">
+					<!-- default heading -->
+					<div class="default-heading">
+						<!-- heading -->
+						<h2>Contact Us</h2>
+					</div>
+					<div class="row">	
+						<div class="col-md-4 col-sm-4">
+							<!-- contact item -->
+							<div class="contact-item ">
+								<!-- big icon -->
+								<i class="fa fa-street-view"></i>
+								<!-- contact details  -->
+								<span class="contact-details">KJSCE</span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<!-- contact item -->
+							<div class="contact-item ">
+								<!-- big icon -->
+								<i class="fa fa-wifi"></i>
+								<!-- contact details  -->
+								<span class="contact-details">music.com</span>
+							</div>
+						</div>
+						<div class="col-md-4 col-sm-4">
+							<!-- contact item -->
+							<div class="contact-item ">
+								<!-- big icon -->
+								<i class="fa fa-phone"></i>
+								<!-- contact details  -->
+								<span class="contact-details">7021159343</span>
+							</div>
+						</div>
+					</div>
+					<!-- form content -->
+					<div class="form-content ">
+						<!-- paragraph -->
+						<p>Do you have any idea in your mind? Drop us a line.</p>
+						<form role="form" id="contactForm" method="post">
+							<div class="row">
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label for="name">Name</label>
+										<input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+									</div>
+									<div class="form-group">
+										<label for="email">Email</label>
+										<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+									</div>
+									<div class="form-group">
+										<label for="phone">Phone</label>
+										<input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone">
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<label for="message">Message</label>
+										<textarea class="form-control" id="message" name="message" rows="9" placeholder="Enter message"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="text-center">
+								<button type="submit" class="btn btn-lg btn-theme">Send Message</button>
+							</div>
+						</form>
+												
+					</div>
+
+				</div>
+			</div>
+			<!-- contact end -->
+			
+			<!-- footer -->
+			<footer>
+				<div class="container">
+					<!-- social media links -->
+					<div class="social">
+						<a class="h-facebook" href="#"><i class="fa fa-facebook"></i></a>
+						<a class="h-google" href="#"><i class="fa fa-google-plus"></i></a>
+						<a class="h-linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+						<a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
+					</div>
+					<!-- copy right -->
+					<p class="copy-right">&copy; copyright 2021, All rights are reserved.</p>
+				</div>
+			</footer>
+			<!-- footer end -->
+			
+			<!-- Scroll to top -->
+			<span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span> 
+			
+		</div>
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="{{ url_for('static', filename='home/js/jquery.js')}}"></script>
+		<!-- Bootstrap JS -->
+		<script src="{{ url_for('static', filename='home/js/bootstrap.min.js')}}"></script>
+		<!-- WayPoints JS -->
+		<script src="{{ url_for('static', filename='home/js/waypoints.min.js')}}"></script>
+		<!-- Include js plugin -->
+		<script src="{{ url_for('static', filename='home/js/owl.carousel.min.js')}}"></script>
+		<!-- One Page Nav -->
+		<script src="{{ url_for('static', filename='home/js/jquery.nav.js')}}"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="{{ url_for('static', filename='home/js/respond.min.js')}}"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="{{ url_for('static', filename='home/js/html5shiv.js')}}"></script>
+		<!-- Custom JS -->
+		<script src="{{ url_for('static', filename='home/js/custom.js')}}"></script>
+	</body>	
+</html>

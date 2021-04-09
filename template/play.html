@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>upload</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<title>success</title>
+</head>
+<body>
+
+    <div class="main">
+        <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+              
+               
+                <div class="signin-form" >
+                    <h3> File uploaded successfully </h3>
+                      
+                   
+                  
+                    <p>File Name: {{entries.playid}}</p>
+                    <audio controls>
+                        <source src="http://127.0.0.1:5000/{{ entries.playid}}" type="audio/wav">
+                  
+                        </audio>
+                    
+
+                </div>
+                   
+                  
+            </div>
+        </div>
+    </section>
+        </div>
+
+<p></p>
+<p></p>
+</body>
+</html>

@@ -31,8 +31,9 @@
                       <a href="{{ url_for('index')}}" > <button class="w3-button w3-block w3-teal">Login</button> </a> <br>
                       <a href="{{ url_for('logout') }}">  <button class="w3-button w3-block w3-teal">Logout</button></a>
                       <br>
+                      {% if message %}
                       <a href="{{ url_for('upload')}}" > <button class="w3-button w3-block w3-teal">Genre Prediction</button> </a> 
-                      
+                      {% endif %} 
                     </div>
             </div>
         </div>
