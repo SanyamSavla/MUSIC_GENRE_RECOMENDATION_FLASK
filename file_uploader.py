@@ -113,9 +113,10 @@ def login():
     error=None
     users = mongo.db.users
     login_user = users.find_one({'name' : request.form['name']})
-    hashed=login_user['password'].decode('utf-8')
+    #hashed=login_user['password'].decode('utf-8')
+    hashed=login_user['password']
     if login_user:
-        if bcrypt.hashpw(request.form['password'].encode('utf-8'), (hashed)) == (hashed):
+        if bcrypt.checkpw(request.form['password'].encode('utf-8'), hashed):
             session['name'] = request.form['name']
             return redirect(url_for('index'))
         
