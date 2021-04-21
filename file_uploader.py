@@ -87,7 +87,7 @@ def streammp3(stream_id):
 @app.route('/home1')
 def test():
     if 'name' in session:
-        text='Loged in'
+        text='Logged in'
         return render_template('test.html',text=text)
     return render_template('test.html')
 #login
@@ -134,7 +134,8 @@ def register():
             hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
             users.insert({'name' : request.form['name'], 'password' : (hashpass)})
             session['name'] = request.form['name']
-            return redirect(url_for('test'))
+            #return redirect(url_for('test'))
+            return render_template('signin.html')
 
         
         return 'That username already exists!'
