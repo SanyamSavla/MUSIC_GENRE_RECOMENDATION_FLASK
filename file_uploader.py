@@ -34,9 +34,9 @@ scaler = pickle.load(open('scaler.pkl','rb'))
 
 
 app.config['MONGO_DBNAME'] = 'mip'
-app.config['MONGO_URI'] = 'mongodb+srv://sanyam:sanyam@cluster0.s7zmx.mongodb.net/test'
+app.config['MONGO_URI'] = 'mongodb+srv://amogh:amogh@cluster0.divgo.mongodb.net/db?retryWrites=true&w=majority'
 mongo = PyMongo(app)
-mongo_client = MongoClient('mongodb+srv://sanyam:sanyam@cluster0.s7zmx.mongodb.net/test')
+mongo_client = MongoClient('mongodb+srv://amogh:amogh@cluster0.divgo.mongodb.net/db?retryWrites=true&w=majority')
 db = mongo_client['mip']
 grid_fs = GridFS(db)
 
@@ -223,7 +223,7 @@ def success():
         mtdt_scaled = scaler.transform([mtdt])
         pred_genre = model.predict(mtdt_scaled)
         genre_name = genre[pred_genre[0]]
-        print(session['name'])
+        #print(session['name'])
         
         with grid_fs.new_file(filename=f.filename,name=session['name'],genre=genre_name,playid='1') as fp:
             fp.write(request.data)

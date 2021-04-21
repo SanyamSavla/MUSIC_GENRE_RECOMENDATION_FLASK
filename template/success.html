@@ -30,6 +30,13 @@
                     <br>
                     <br>
                     <mark style="font-weight: bold;"> Predicted genre: {{genre}} </mark> <br> <br>
+                    <p>chroma_stft: {{chroma_stft}}</p>
+                    <p>Root_mean_square_error: {{Root_mean_square_error}}</p>
+                    <p>Fetching_Spectral_Centroid: {{Fetching_Spectral_Centroid}}</p>
+                    <p>Spectral_Bandwidth: {{Spectral_Bandwidth}}</p>
+                    <p>Fetching_Spectral_Rolloff: {{Fetching_Spectral_Rolloff}}</p>
+                    <p>Zero_Crossing_Rate: {{Zero_Crossing_Rate}}</p>
+                    <p>mfcc: {{mfcc}}</p>
                     <a href="{{ url_for('index')}}" > <button class="w3-button w3-block w3-teal" >Return to Home</button> </a> <br>
                     
                     <a href="{{ url_for('show_entries')}}" > <button class="w3-button w3-block w3-teal" >Play </button> </a> <br>
