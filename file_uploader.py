@@ -229,7 +229,7 @@ def success():
             fp.write(request.data)
             id=fp._id
             
-        return render_template("success.html", name = file_name, genre = genre_name,entry=id)
+        return render_template("success.html", name = file_name, genre = genre_name,entry=id,chroma_stft= mtdt[1], Root_mean_square_error= mtdt[2], Fetching_Spectral_Centroid= mtdt[3], Spectral_Bandwidth= mtdt[4], Fetching_Spectral_Rolloff= mtdt[5], Zero_Crossing_Rate= mtdt[6], mfcc= mtdt[7])
     
 if __name__ == '__main__':
     
