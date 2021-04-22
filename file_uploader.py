@@ -40,61 +40,8 @@ mongo_client = MongoClient('mongodb+srv://amogh:amogh@cluster0.divgo.mongodb.net
 db = mongo_client['mip']
 grid_fs = GridFS(db)
 
-def return_dict():
-    #Dictionary to store music file information
-    files=db.fs.files
-    result=files.find_one(sort=[( '_id', -1 )])
-    dict_here = [
-        {'id': 1, 'name': 'test', 'link': 'hiphop.00006.wav', 'genre': 'hip'},
-        
-       ]
-    return dict_here
 
-#Route to render GUI
-@app.route('/play')
-def show_entries():
-    general_Data = {
-        'title': 'Music Player'}
-        
-    files=db.fs.files
-    result=files.find_one(sort=[( '_id', -1 )])
-    
-    stream_entries = result
-    print(stream_entries)
-      
-    return render_template('play.html', entries=stream_entries, **general_Data)
-
-#Route to stream music
-@app.route('/int:<stream_id>')
-def streammp3(stream_id):
-    def generate():
-        data = return_dict()
-        count = 1
-        for item in data:
-            if item['id'] == stream_id:
-                song = item['link']
-        with open(song, "rb") as fwav:
-            data = fwav.read(1024)
-            while data:
-                yield data
-                data = fwav.read(1024)
-                logging.debug('Music data fragment : ' + str(count))
-                count += 1
-                
-    return Response(generate(), mimetype="audio/wav")
-
-
-@app.route('/home1')
-def test():
-    if 'name' in session:
-        text='Logged in'
-        return render_template('test.html',text=text)
-    return render_template('test.html')
-#login
-@app.route('/home')
-def home():
-    return render_template('home.html')
-
+#home route
 @app.route('/')
 def index():
     if 'name' in session:
@@ -103,27 +50,7 @@ def index():
 
     return render_template('signin.html')
 
-@app.route('/logout')
-def logout():
-    session.pop('name',None)
-    return redirect(url_for('index'))
-
-@app.route('/login', methods=['POST'])
-def login():
-    error=None
-    users = mongo.db.users
-    login_user = users.find_one({'name' : request.form['name']})
-    #hashed=login_user['password'].decode('utf-8')
-    hashed=login_user['password']
-    if login_user:
-        if bcrypt.checkpw(request.form['password'].encode('utf-8'), hashed):
-            session['name'] = request.form['name']
-            return redirect(url_for('index'))
-        
-    error='Invalid username/password combination'
-    return render_template('signin.html',error=error)  
-
-
+#signup route
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
@@ -142,7 +69,42 @@ def register():
 
     return render_template('index.html')
 
-   
+
+#login route
+@app.route('/login', methods=['POST'])
+def login():
+    error=None
+    users = mongo.db.users
+    login_user = users.find_one({'name' : request.form['name']})
+    #hashed=login_user['password'].decode('utf-8')
+    hashed=login_user['password']
+    if login_user:
+        if bcrypt.checkpw(request.form['password'].encode('utf-8'), hashed):
+            session['name'] = request.form['name']
+            return redirect(url_for('index'))
+        
+    error='Invalid username/password combination'
+    return render_template('signin.html',error=error)  
+
+#logout
+@app.route('/logout')
+def logout():
+    session.pop('name',None)
+    return redirect(url_for('index'))
+
+#home routes - for testing
+@app.route('/home')
+def home():
+    return render_template('home.html')
+
+@app.route('/home1')
+def test():
+    if 'name' in session:
+        text='Logged in'
+        return render_template('test.html',text=text)
+    return render_template('test.html')
+
+#fetch metadata from input song
 def getmetadata(filename):
     y, sr = librosa.load(filename)
     onset_env = librosa.onset.onset_strength(y, sr)
@@ -190,12 +152,12 @@ def getmetadata(filename):
 
     return (metadata_dict)
 
+#upload song route
 @app.route('/upload')
 def upload():
     return render_template("file_upload_form.html")
 
-
-
+#success => after genre prediction
 @app.route('/success', methods = ['POST'])
 def success():
     UPLOAD_FOLDER = '/uploads'
@@ -233,6 +195,51 @@ def success():
             
         return render_template("success.html", name = file_name, genre = genre_name,entry=id,chroma_stft= mtdt[1], Root_mean_square_error= mtdt[2], Fetching_Spectral_Centroid= mtdt[3], Spectral_Bandwidth= mtdt[4], Fetching_Spectral_Rolloff= mtdt[5], Zero_Crossing_Rate= mtdt[6], mfcc= mtdt[7])
     
+#Route to render GUI
+@app.route('/play')
+def show_entries():
+    general_Data = {
+        'title': 'Music Player'}
+        
+    files=db.fs.files
+    result=files.find_one(sort=[( '_id', -1 )])
+    
+    stream_entries = result
+    print(stream_entries)
+      
+    return render_template('play.html', entries=stream_entries, **general_Data)
+
+#Route to stream music
+@app.route('/int:<stream_id>')
+def streammp3(stream_id):
+    def generate():
+        data = return_dict()
+        count = 1
+        for item in data:
+            if item['id'] == stream_id:
+                song = item['link']
+        with open(song, "rb") as fwav:
+            data = fwav.read(1024)
+            while data:
+                yield data
+                data = fwav.read(1024)
+                logging.debug('Music data fragment : ' + str(count))
+                count += 1
+                
+    return Response(generate(), mimetype="audio/wav")
+
+
+
+def return_dict():
+    #Dictionary to store music file information
+    files=db.fs.files
+    result=files.find_one(sort=[( '_id', -1 )])
+    dict_here = [
+        {'id': 1, 'name': 'test', 'link': 'hiphop.00006.wav', 'genre': 'hip'},
+        
+       ]
+    return dict_here
+
 if __name__ == '__main__':
     
     app.secret_key = 'mysecret'
