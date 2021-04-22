@@ -1,15 +1,3 @@
-<!-- <html>
-<head>
-<title>success</title>
-</head>
-<body>
-<p>File uploaded successfully</p>
-<p>File Name: {{name}}</p>
-<p>Predicted genre: {{genre}}</p>    
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -17,8 +5,9 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
+
 <head>
-    <title>Genre</title>
+    <title>Singer</title>
     <meta charset="utf-8">
     <!--[if IE]>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,14 +15,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/animations.css">
-    <link rel="stylesheet" href="staticcss/fonts.css">
-    <link rel="stylesheet" href="static/css/cue.css">
-    <link rel="stylesheet" href="static/css/main.css" class="color-switcher-link">
-    <link rel="stylesheet" href="static/css/shop.css" class="color-switcher-link">
-    <link rel="stylesheet" href="static/css/mediaelementplayer-legacy.css">
-    <script src="static/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/cue.css">
+    <link rel="stylesheet" href="css/main.css" class="color-switcher-link">
+    <link rel="stylesheet" href="css/shop.css" class="color-switcher-link">
+    <link rel="stylesheet" href="css/mediaelementplayer-legacy.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     <!--[if lt IE 9]>
 		<script src="js/vendor/html5shiv.min.js"></script>
 		<script src="js/vendor/respond.min.js"></script>
@@ -75,9 +64,14 @@
     <div id="canvas">
         <div id="box_wrapper">
             <!-- template sections -->
-            <!-- <section class="page_topline ds table_section table_section_sm section_padding_top_10 section_padding_bottom_10">
+            <section class="page_topline ds table_section table_section_sm section_padding_top_10 section_padding_bottom_10">
                 <div class="container-fluid">
-                   
+                    <div class="row">
+                        <div class="col-sm-6 text-center text-sm-left"> <span class="small-text rightpadding_20 hidden-sm">follow us:</span> <span>
+					<a class="social-icon socicon-facebook" href="#" title="Facebook"></a>
+					<a class="social-icon socicon-twitter" href="#" title="Twitter"></a>
+					<a class="social-icon socicon-youtube" href="#" title="Youtube"></a>
+					<a class="social-icon socicon-google" href="#" title="Google"></a>
 				</span> </div>
                         <div class="col-sm-6 text-center text-sm-right">
                             <div class="inline-content small-text greylinks">
@@ -116,29 +110,29 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
-            <!-- <header class="page_header header_darkgrey header_transparent toggler_xs_right tall_header">
+            </section>
+            <header class="page_header header_darkgrey header_transparent toggler_xs_right tall_header">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-12 display_table">
                             <div class="header_left_logo display_table_cell"> <a href="./" class="logo top_logo">
-                        <img src="static/images/logo.png" alt="">
+                        <img src="images/logo.png" alt="">
                     </a> </div>
                             <div class="header_mainmenu display_table_cell text-center">
                                 <!-- main nav start -->
-                                <!-- <nav class="mainmenu_wrapper">
+                                <nav class="mainmenu_wrapper">
                                     <ul class="mainmenu nav sf-menu">
-                                        <li class="active"> <a href="success.html">Homepage</a>
+                                        <li class="active"> <a href="index.html">Homepage</a>
                                             <ul>
-                                                <li> <a href="success.html">Homepage</a> </li>
+                                                <li> <a href="index.html">Homepage</a> </li>
                                                 <li> <a href="index-static.html">Homepage static intro</a> </li>
                                                 <li> <a href="index-single.html">Homepage single page</a> </li>
                                             </ul>
                                         </li>
                                         <li> <a href="about.html">Pages</a>
-                                            <ul> -->
+                                            <ul>
                                                 <!-- features -->
-                                                <!-- <li> <a href="shortcodes_teasers.html">Shortcodes &amp; Widgets</a>
+                                                <li> <a href="shortcodes_teasers.html">Shortcodes &amp; Widgets</a>
                                                     <ul>
                                                         <li> <a href="shortcodes_typography.html">Typography</a> </li>
                                                         <li> <a href="shortcodes_buttons.html">Buttons</a> </li>
@@ -151,12 +145,12 @@
                                                         <li> <a href="shortcodes_icons.html">Template Icons</a> </li>
                                                         <li> <a href="shortcodes_socialicons.html">Social Icons</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof features -->
-                                                <!-- <li> <a href="about.html">About</a> </li>
-                                                <li> <a href="timetable.html">Timetable</a> </li> -->
+                                                <li> <a href="about.html">About</a> </li>
+                                                <li> <a href="timetable.html">Timetable</a> </li>
                                                 <!-- events -->
-                                                <!-- <li> <a href="events-left.html">Events</a>
+                                                <li> <a href="events-left.html">Events</a>
                                                     <ul>
                                                         <li> <a href="events-left.html">Left Sidebar</a> </li>
                                                         <li> <a href="events-right.html">Right Sidebar</a> </li>
@@ -169,9 +163,9 @@
                                                             </ul>
                                                         </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof events -->
-                                                <!-- <li> <a href="team.html">Team</a>
+                                                <li> <a href="team.html">Team</a>
                                                     <ul>
                                                         <li> <a href="team.html">Team</a> </li>
                                                         <li> <a href="team-single.html">Team Member</a> </li>
@@ -183,8 +177,8 @@
                                                         <li> <a href="comingsoon2.html">Comingsoon 2</a> </li>
                                                     </ul>
                                                 </li>
-                                                <li> <a href="faq.html">FAQ</a> -->
-                                                    <!-- <ul>
+                                                <li> <a href="faq.html">FAQ</a>
+                                                    <ul>
                                                         <li> <a href="faq.html">FAQ</a> </li>
                                                         <li> <a href="faq2.html">FAQ 2</a> </li>
                                                     </ul>
@@ -196,9 +190,9 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li> -->
+                                        </li>
                                         <!-- eof pages -->
-                                        <!-- <li> <a href="albums.html">Music</a>
+                                        <li> <a href="albums.html">Music</a>
                                             <ul>
                                                 <li> <a href="albums.html">Albums</a> </li>
                                                 <li> <a href="single-album.html">Single album</a> </li>
@@ -261,82 +255,82 @@
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                            </div> -->
+                                            </div>
                                             <!-- eof mega menu -->
-                                        <!-- </li> -->
+                                        </li>
                                         <!-- eof features -->
                                         <!-- gallery -->
-                                        <!-- <li> <a href="gallery-regular.html">Photos</a>
-                                            <ul> -->
+                                        <li> <a href="gallery-regular.html">Photos</a>
+                                            <ul>
                                                 <!-- Photos regular -->
-                                                <!-- <li> <a href="gallery-regular.html">Photos Regular</a>
+                                                <li> <a href="gallery-regular.html">Photos Regular</a>
                                                     <ul>
                                                         <li> <a href="gallery-regular.html">1 column</a> </li>
                                                         <li> <a href="gallery-regular-2-cols.html">2 columns</a> </li>
                                                         <li> <a href="gallery-regular-3-cols.html">3 columns</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos regular -->
                                                 <!-- Photos full width -->
-                                                <!-- <li> <a href="gallery-fullwidth.html">Photos Full Width</a>
+                                                <li> <a href="gallery-fullwidth.html">Photos Full Width</a>
                                                     <ul>
                                                         <li> <a href="gallery-fullwidth.html">2 column</a> </li>
                                                         <li> <a href="gallery-fullwidth-3-cols.html">3 columns</a> </li>
                                                         <li> <a href="gallery-fullwidth-4-cols.html">4 columns</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos full width -->
                                                 <!-- Photos extended -->
-                                                <!-- <li> <a href="gallery-extended.html">Photos Extended</a>
+                                                <li> <a href="gallery-extended.html">Photos Extended</a>
                                                     <ul>
                                                         <li> <a href="gallery-extended.html">1 column</a> </li>
                                                         <li> <a href="gallery-extended-2-cols.html">2 columns</a> </li>
                                                         <li> <a href="gallery-extended-3-cols.html">3 columns</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos extended -->
                                                 <!-- Photos carousel -->
-                                                <!-- <li> <a href="gallery-carousel.html">Photos Carousel</a>
+                                                <li> <a href="gallery-carousel.html">Photos Carousel</a>
                                                     <ul>
                                                         <li> <a href="gallery-carousel.html">1 column</a> </li>
                                                         <li> <a href="gallery-carousel-2-cols.html">2 columns</a> </li>
                                                         <li> <a href="gallery-carousel-3-cols.html">3 columns</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos carousel -->
                                                 <!-- Photos tile -->
-                                                <!-- <li> <a href="gallery-tile.html">Photos Tile</a> </li> -->
+                                                <li> <a href="gallery-tile.html">Photos Tile</a> </li>
                                                 <!-- eof Photos tile -->
                                                 <!-- Photos left sidebar -->
-                                                <!-- <li> <a href="gallery-left.html">Photos Left Sidebar</a>
+                                                <li> <a href="gallery-left.html">Photos Left Sidebar</a>
                                                     <ul>
                                                         <li> <a href="gallery-left.html">1 column</a> </li>
                                                         <li> <a href="gallery-left-2-cols.html">2 columns</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos left sidebar -->
                                                 <!-- Photos right sidebar -->
-                                                <!-- <li> <a href="gallery-right.html">Photos Right Sidebar</a>
+                                                <li> <a href="gallery-right.html">Photos Right Sidebar</a>
                                                     <ul>
                                                         <li> <a href="gallery-right.html">1 column</a> </li>
                                                         <li> <a href="gallery-right-2-cols.html">2 columns</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos right sidebar -->
                                                 <!-- Photos item -->
-                                                <!-- <li> <a href="gallery-single.html">Photos Item</a>
+                                                <li> <a href="gallery-single.html">Photos Item</a>
                                                     <ul>
                                                         <li> <a href="gallery-single.html">Style 1</a> </li>
                                                         <li> <a href="gallery-single2.html">Style 2</a> </li>
                                                         <li> <a href="gallery-single3.html">Style 3</a> </li>
                                                     </ul>
-                                                </li> -->
+                                                </li>
                                                 <!-- eof Photos item -->
-                                            <!-- </ul> -->
-                                        <!-- </li> -->
+                                            </ul>
+                                        </li>
                                         <!-- eof Photos -->
                                         <!-- blog -->
-                                        <!-- <li> <a href="blog-right.html">Blog</a>
+                                        <li> <a href="blog-right.html">Blog</a>
                                             <ul>
                                                 <li> <a href="blog-right.html">Right Sidebar</a> </li>
                                                 <li> <a href="blog-left.html">Left Sidebar</a> </li>
@@ -357,10 +351,10 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li> -->
+                                        </li>
                                         <!-- eof blog -->
                                         <!-- shop -->
-                                        <!-- <li> <a href="shop-right.html">Store</a>
+                                        <li> <a href="shop-right.html">Store</a>
                                             <ul>
                                                 <li> <a href="shop-right.html">Store</a> </li>
                                                 <li> <a href="shop-product-right.html">Single Product</a> </li>
@@ -368,39 +362,39 @@
                                                 <li> <a href="shop-checkout-right.html">Checkout</a> </li>
                                                 <li> <a href="shop-register.html">Registration</a> </li>
                                             </ul>
-                                        </li> -->
+                                        </li>
                                         <!-- eof shop -->
                                         <!-- contacts -->
-                                        <!-- <li> <a href="contact.html">Contacts</a>
+                                        <li> <a href="contact.html">Contacts</a>
                                             <ul>
                                                 <li> <a href="contact.html">Contact 1</a> </li>
                                                 <li> <a href="contact2.html">Contact 2</a> </li>
                                                 <li> <a href="contact3.html">Contact 3</a> </li>
                                                 <li> <a href="contact4.html">Contact 4</a> </li>
                                             </ul>
-                                        </li> -->
+                                        </li>
                                         <!-- eof contacts -->
-                                    <!-- </ul>
-                                </nav> -->
+                                    </ul>
+                                </nav>
                                 <!-- eof main nav -->
-                                <!-- header toggler<span class="toggle_menu"><span></span></span> -->
-                            <!-- </div>
+                                <!-- header toggler --><span class="toggle_menu"><span></span></span>
+                            </div>
                             <div class="header_right_buttons display_table_cell text-right hidden-xs"> <a href="contact.html" class="theme_button inverse min_width_button">Buy tickets</a> </div>
                         </div>
                     </div>
                 </div>
-            </header>  -->
+            </header>
             <section class="intro_section page_mainslider ds">
                 <div class="flexslider" data-dots="true" data-nav="te">
                     <ul class="slides">
-                        <li> 
+                        <li> <img src="images/slide01.jpg" alt="">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-sm-12 text-center">
                                         <div class="slide_description_wrapper">
                                             <div class="slide_description">
                                                 <div class="intro-layer" data-animation="fadeInUp">
-                                                    <h2> <span class="small">Hello! your SUCCESSFUL prediction is</span> {{genre}} </h2>
+                                                    <h2> <span class="small">Hello! I am a singer</span> Rachel Salverz </h2>
                                                 </div>
                                                 <div class="intro-layer" data-animation="fadeInUp">
                                                     <p>Music only makes me stronger. Music speaks to the heart in ways words cannot express.</p>
@@ -416,8 +410,52 @@
                             </div>
                             <!-- eof .container -->
                         </li>
-                        
-        
+                        <li> <img src="images/slide02.jpg" alt="">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <div class="slide_description_wrapper">
+                                            <div class="slide_description">
+                                                <div class="intro-layer" data-animation="fadeInUp">
+                                                    <h2> <span class="small">Hello! I am a singer</span> Rachel Salverz </h2>
+                                                </div>
+                                                <div class="intro-layer" data-animation="fadeInUp">
+                                                    <p>We hold our notes longer, better, and higher. We put the mental in instrumental and the cool in musicool.</p>
+                                                </div>
+                                            </div>
+                                            <!-- eof .slide_description -->
+                                        </div>
+                                        <!-- eof .slide_description_wrapper -->
+                                    </div>
+                                    <!-- eof .col-* -->
+                                </div>
+                                <!-- eof .row -->
+                            </div>
+                            <!-- eof .container -->
+                        </li>
+                        <li> <img src="images/slide03.jpg" alt="">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <div class="slide_description_wrapper">
+                                            <div class="slide_description">
+                                                <div class="intro-layer" data-animation="fadeInUp">
+                                                    <h2> <span class="small">Hello! I am a singer</span> Rachel Salverz </h2>
+                                                </div>
+                                                <div class="intro-layer" data-animation="fadeInUp">
+                                                    <p>We hold our notes longer, better, and higher. We put the mental in instrumental and the cool in musicool.</p>
+                                                </div>
+                                            </div>
+                                            <!-- eof .slide_description -->
+                                        </div>
+                                        <!-- eof .slide_description_wrapper -->
+                                    </div>
+                                    <!-- eof .col-* -->
+                                </div>
+                                <!-- eof .row -->
+                            </div>
+                            <!-- eof .container -->
+                        </li>
                     </ul>
                 </div>
                 <!-- eof flexslider -->
@@ -426,34 +464,27 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 text-center">
-                            <div class="with_frame_image"> <img src="static/images/{{genre}}.jpg" alt="" class="rounded"> </div>
+                            <div class="with_frame_image"> <img src="images/about.jpg" alt="" class="rounded"> </div>
                         </div>
                         <div class="col-md-6">
-                            <h2 class="section_header with_line">{{genre}}</h2>
+                            <h2 class="section_header with_line">Genre</h2>
                             <p>chroma_stft: {{chroma_stft}}</p>
-                            <p>Root_mean_square_error: {{Root_mean_square_error}}</p>
-                            <p>Fetching_Spectral_Centroid: {{Fetching_Spectral_Centroid}}</p>
-                            <p>Spectral_Bandwidth: {{Spectral_Bandwidth}}</p>
-                            <p>Fetching_Spectral_Rolloff: {{Fetching_Spectral_Rolloff}}</p>
-                            <p>Zero_Crossing_Rate: {{Zero_Crossing_Rate}}</p>
-                            <p>mfcc: {{mfcc}}</p>
-                            <!-- <div class="content-justify vertical-center content-margins topmargin_25">
-                                <div>
-                                    <h3 class="highlight bottommargin_0">Christian Caldwell</h3>
-                                    <p class="small-text grey">Anne`s Producer</p>
-                                </div> <img src="static/images/signature.png" alt=""> </div> -->
+                                <p>Root_mean_square_error: {{Root_mean_square_error}}</p>
+                                <p>Fetching_Spectral_Centroid: {{Fetching_Spectral_Centroid}}</p>
+                                <p>Spectral_Bandwidth: {{Spectral_Bandwidth}}</p>
+                                <p>Fetching_Spectral_Rolloff: {{Fetching_Spectral_Rolloff}}</p>
+                                <p>Zero_Crossing_Rate: {{Zero_Crossing_Rate}}</p>
+                                <p>mfcc: {{mfcc}}</p>
                         </div>
-                    </div>
-                </div>
             </section>
-            <!-- <section id="events" class="ds ms section_padding_top_150 section_padding_bottom_150">
+            <section id="events" class="ds ms section_padding_top_150 section_padding_bottom_150">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <h2 class="section_header with_line">Tour Dates</h2>
                             <div class="owl-carousel topmargin_60" data-dots="false" data-nav="true" data-responsive-lg="3">
                                 <div class="vertical-item content-absolute hover-entry-content">
-                                    <div class="item-media mutted-media ds"> <img src="static/images/events/01.jpg" alt="">
+                                    <div class="item-media mutted-media ds"> <img src="images/events/01.jpg" alt="">
                                         <div class="entry-meta-corner grey"> <span class="big">$65</span> <span class="small-text">a ticket</span> </div>
                                     </div>
                                     <div class="item-content cs">
@@ -466,7 +497,7 @@
                                     </div>
                                 </div>
                                 <div class="vertical-item content-absolute hover-entry-content">
-                                    <div class="item-media mutted-media ds"> <img src="static/images/events/02.jpg" alt="">
+                                    <div class="item-media mutted-media ds"> <img src="images/events/02.jpg" alt="">
                                         <div class="entry-meta-corner grey"> <span class="big">$80</span> <span class="small-text">a ticket</span> </div>
                                     </div>
                                     <div class="item-content cs">
@@ -479,7 +510,7 @@
                                     </div>
                                 </div>
                                 <div class="vertical-item content-absolute hover-entry-content">
-                                    <div class="item-media mutted-media ds"> <img src="static/images/events/03.jpg" alt="">
+                                    <div class="item-media mutted-media ds"> <img src="images/events/03.jpg" alt="">
                                         <div class="entry-meta-corner grey"> <span class="big">$99</span> <span class="small-text">a ticket</span> </div>
                                     </div>
                                     <div class="item-content cs">
@@ -492,7 +523,7 @@
                                     </div>
                                 </div>
                                 <div class="vertical-item content-absolute hover-entry-content">
-                                    <div class="item-media mutted-media ds"> <img src="static/images/events/01.jpg" alt="">
+                                    <div class="item-media mutted-media ds"> <img src="images/events/01.jpg" alt="">
                                         <div class="entry-meta-corner grey"> <span class="big">$65</span> <span class="small-text">a ticket</span> </div>
                                     </div>
                                     <div class="item-content cs">
@@ -505,7 +536,7 @@
                                     </div>
                                 </div>
                                 <div class="vertical-item content-absolute hover-entry-content">
-                                    <div class="item-media mutted-media ds"> <img src="static/images/events/02.jpg" alt="">
+                                    <div class="item-media mutted-media ds"> <img src="images/events/02.jpg" alt="">
                                         <div class="entry-meta-corner grey"> <span class="big">$80</span> <span class="small-text">a ticket</span> </div>
                                     </div>
                                     <div class="item-content cs">
@@ -518,7 +549,7 @@
                                     </div>
                                 </div>
                                 <div class="vertical-item content-absolute hover-entry-content">
-                                    <div class="item-media mutted-media ds"> <img src="static/images/events/03.jpg" alt="">
+                                    <div class="item-media mutted-media ds"> <img src="images/events/03.jpg" alt="">
                                         <div class="entry-meta-corner grey"> <span class="big">$99</span> <span class="small-text">a ticket</span> </div>
                                     </div>
                                     <div class="item-content cs">
@@ -534,8 +565,8 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
-            <!-- <section id="featured-video" class="ds parallax section_padding_top_150 section_padding_bottom_150">
+            </section>
+            <section id="featured-video" class="ds parallax section_padding_top_150 section_padding_bottom_150">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 text-center"> <a href="https://www.youtube.com/watch?v=2Kvl0vpV6lM" class="theme_button inverse round_button margin_0" data-gal="prettyPhoto[gal-video]">
@@ -545,7 +576,7 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
             <section id="latest-album" class="ds ms page_latest_album parallax section_padding_top_150 section_padding_bottom_100 columns_margin_bottom_30 columns_padding_25">
                 <div class="container">
                     <div class="row">
@@ -556,9 +587,9 @@
                     <div class="row">
                         <div class="col-md-5 col-sm-7">
                             <div class="vertical-item slide-media opened-media">
-                                <div class="item-media-wrap"> <img src="static/images/albums/02.jpg" alt="">
-                                    <div class="item-media back-media"> <img src="static/images/albums/cd.png" alt=""> </div>
-                                    <div class="item-media with_frame_image"> <img src="static/images/albums/02.jpg" alt="">
+                                <div class="item-media-wrap"> <img src="images/albums/02.jpg" alt="">
+                                    <div class="item-media back-media"> <img src="images/albums/cd.png" alt=""> </div>
+                                    <div class="item-media with_frame_image"> <img src="images/albums/02.jpg" alt="">
                                         <div class="media-links no-overlay">
                                             <div class="links-wrap"> <span>
 										<i class="fa fa-play highlight" aria-hidden="true"></i>
@@ -605,7 +636,7 @@
                                                         },
                                                         "src": "https://s3.envato.com/files/229455919/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/01.jpg"
+                                                            "src": "images/albums/01.jpg"
                                                         }
                                                     },
                                                     {
@@ -625,7 +656,7 @@
                                                         },
                                                         "src": "https://0.s3.envato.com/files/216844247/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/02.jpg"
+                                                            "src": "images/albums/02.jpg"
                                                         }
                                                     },
                                                     {
@@ -645,7 +676,7 @@
                                                         },
                                                         "src": "https://0.s3.envato.com/files/196824856/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/03.jpg"
+                                                            "src": "images/albums/03.jpg"
                                                         }
                                                     },
                                                     {
@@ -665,7 +696,7 @@
                                                         },
                                                         "src": "https://0.s3.envato.com/files/179391137/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/04.jpg"
+                                                            "src": "images/albums/04.jpg"
                                                         }
                                                     },
                                                     {
@@ -685,7 +716,7 @@
                                                         },
                                                         "src": "https://0.s3.envato.com/files/175505487/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/05.jpg"
+                                                            "src": "images/albums/05.jpg"
                                                         }
                                                     },
                                                     {
@@ -705,7 +736,7 @@
                                                         },
                                                         "src": "https://0.s3.envato.com/files/196824856/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/03.jpg"
+                                                            "src": "images/albums/03.jpg"
                                                         }
                                                     },
                                                     {
@@ -725,7 +756,7 @@
                                                         },
                                                         "src": "https://s3.envato.com/files/229455919/preview.mp3",
                                                         "thumb": {
-                                                            "src": "static/images/albums/01.jpg"
+                                                            "src": "images/albums/01.jpg"
                                                         }
                                                     }
                                                 ]
@@ -738,7 +769,7 @@
                     </div>
                 </div>
             </section>
-            <!-- <section id="contact" class="ds ms background_cover page_contact section_padding_top_150 section_padding_bottom_150">
+            <section id="contact" class="ds ms background_cover page_contact section_padding_top_150 section_padding_bottom_150">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-6 text-center">
@@ -765,15 +796,15 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
-            <!-- <section id="news" class="ds ms section_padding_top_150 section_padding_bottom_130">
+            </section>
+            <section id="news" class="ds ms section_padding_top_150 section_padding_bottom_130">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12 text-center">
                             <h2 class="section_header with_line">Latest News</h2>
                             <div class="owl-carousel topmargin_60" data-responsive-lg="3" data-dots="true">
                                 <article class="vertical-item content-padding with_background rounded text-center offset_button">
-                                    <div class="item-media top_rounded overflow_hidden"> <img src="static/images/gallery/11.jpg" alt="">
+                                    <div class="item-media top_rounded overflow_hidden"> <img src="images/gallery/11.jpg" alt="">
                                         <div class="media-links"> <a href="blog-single-right.html" class="abs-link"></a> </div>
                                     </div>
                                     <div class="item-content">
@@ -796,7 +827,7 @@
                                     </div>
                                 </article>
                                 <article class="vertical-item content-padding with_background rounded text-center offset_button">
-                                    <div class="item-media top_rounded overflow_hidden"> <img src="static/images/gallery/18.jpg" alt="">
+                                    <div class="item-media top_rounded overflow_hidden"> <img src="images/gallery/18.jpg" alt="">
                                         <div class="media-links"> <a href="blog-single-right.html" class="abs-link"></a> </div>
                                     </div>
                                     <div class="item-content">
@@ -819,7 +850,7 @@
                                     </div>
                                 </article>
                                 <article class="vertical-item content-padding with_background rounded text-center offset_button">
-                                    <div class="item-media top_rounded overflow_hidden"> <img src="static/images/gallery/19.jpg" alt="">
+                                    <div class="item-media top_rounded overflow_hidden"> <img src="images/gallery/19.jpg" alt="">
                                         <div class="media-links"> <a href="blog-single-right.html" class="abs-link"></a> </div>
                                     </div>
                                     <div class="item-content">
@@ -845,72 +876,72 @@
                         </div>
                     </div>
                 </div>
-            </section> -->
-            <!-- <section id="gallery" class="ds ms">
+            </section>
+            <section id="gallery" class="ds ms">
                 <div class="owl-carousel gallery-carousel" data-responsive-xlg="8" data-responsive-lg="6" data-responsive-md="5" data-responsive-sm="4" data-responsive-xs="2" data-loop="true" data-margin="0" data-nav="true">
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/01.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/01.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/01.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/02.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/02.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/02.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/03.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/03.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/03.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/04.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/04.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/04.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/05.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/05.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/05.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/06.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/06.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/06.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/07.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/07.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/07.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/08.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/08.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/08.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/09.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/09.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/09.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/10.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/10.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/10.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/11.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/11.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/11.jpg"></a> </div>
                         </div>
                     </div>
                     <div class="vertical-item corporate consulting">
-                        <div class="item-media"> <img src="static/images/gallery-square/12.jpg" alt="">
+                        <div class="item-media"> <img src="images/gallery-square/12.jpg" alt="">
                             <div class="media-links"> <a class="abs-link prettyPhoto" data-gal="prettyPhoto[gal]" title="" href="images/gallery/12.jpg"></a> </div>
                         </div>
                     </div>
                 </div>
-            </section> -->
-            <!-- <footer class="page_footer ds section_padding_top_100 section_padding_bottom_100 columns_padding_25">
+            </section>
+            <footer class="page_footer ds section_padding_top_100 section_padding_bottom_100 columns_padding_25">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 text-center">
@@ -969,7 +1000,7 @@
                         </div>
                     </div>
                 </div>
-            </footer> -->
+            </footer>
             <section class="ds ms page_copyright section_padding_top_40 section_padding_bottom_40">
                 <div class="container">
                     <div class="row">
@@ -985,10 +1016,10 @@
         <!-- eof #box_wrapper -->
     </div>
     <!-- eof #canvas -->
-    <script src="static/js/compressed.js"></script>
-    <script src="static/js/main1.js"></script>
-    <script src="static/js/mediaelement-and-player.min.js"></script>
-    <script src="static/js/mediaelement-migrate.min.js"></script>
+    <script src="js/compressed.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/mediaelement-and-player.min.js"></script>
+    <script src="js/mediaelement-migrate.min.js"></script>
     <script>
         /* <![CDATA[ */
         var _cueSettings = {
@@ -1001,8 +1032,8 @@
         };
         /* ]]> */
     </script>
-    <script src="static/js/cue.min.js"></script>
-    <script src="static/js/switcher.js"></script>
+    <script src="js/cue.min.js"></script>
+    <script src="js/switcher.js"></script>
 </body>
 
 </html>

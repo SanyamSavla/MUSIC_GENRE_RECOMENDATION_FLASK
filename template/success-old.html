@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <title>upload</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='fonts/material-icon/css/material-design-iconic-font.min.css')}}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+<title>success</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+
+
+                    <div class="signin-form">
+                        <h3> File uploaded successfully </h3>
+                        <p>File Name: {{name}}</p>
+                        <br>
+                        <br>
+                        <mark style="font-weight: bold;"> Predicted genre: {{genre}} </mark> <br> <br>
+                        <div class="dropdown">
+                            <button class="dropbtn">Features of the song</button>
+                            <div class="dropdown-content">
+                                <p>chroma_stft: {{chroma_stft}}</p>
+                                <p>Root_mean_square_error: {{Root_mean_square_error}}</p>
+                                <p>Fetching_Spectral_Centroid: {{Fetching_Spectral_Centroid}}</p>
+                                <p>Spectral_Bandwidth: {{Spectral_Bandwidth}}</p>
+                                <p>Fetching_Spectral_Rolloff: {{Fetching_Spectral_Rolloff}}</p>
+                                <p>Zero_Crossing_Rate: {{Zero_Crossing_Rate}}</p>
+                                <p>mfcc: {{mfcc}}</p>
+                            </div>
+                        </div>
+
+                        <a href="{{ url_for('index')}}"> <button class="w3-button w3-block w3-teal" style="margin-top:10px">Return to
+                                Home</button> </a> <br>
+
+                        <a href="{{ url_for('show_entries')}}"> <button class="w3-button w3-block w3-teal">Play
+                            </button> </a> <br>
+
+
+                        <audio controls>
+                            <source src="http://127.0.0.1:5000/{{ 1}}" type="audio/wav">
+                        </audio>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <p></p>
+    <p></p>
+</body>
+
+</html>

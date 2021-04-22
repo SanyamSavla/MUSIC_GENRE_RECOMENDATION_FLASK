@@ -595,7 +595,7 @@ label.valid {
 .dropbtn {
   background-color: #4CAF50;
   color: white;
-  padding: 16px;
+  padding: 16px 16px 16px 16px;
   font-size: 16px;
   border: none;
 }
