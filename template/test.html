@@ -87,16 +87,16 @@
                                 	<p><strong>User </strong></p> {{message}} <br>
                                 {% endif %}  -->
                                 {% if message %}  
-									<li><a href="{{url_for('upload')}}">Genre Prediction </a></li>
-									<li><a href="#">Explore</a></li>
+									<li><a href="{{url_for('upload')}}">Genre Prediction </a></li>	
+									<li><a href="https://josefina-find-your-music.herokuapp.com" target="_blank">Explore</a></li>		
 									<li><a href="#">{{ message }}</a></li>
-									<li><a href="{{ url_for('logout') }}">Logout</a></li>
-									
+									<li><a href="#contact">Contact</a></li>
+									<li><a href="{{ url_for('logout') }}">Logout</a></li>																
 								{% else %}
 									<li><a href="{{'register'}}">Register</a></li>
 									<li><a href="{{ url_for('index')}}">Login</a></li>
-                                {% endif %}  
-								<li><a href="#contact">Contact</a></li>
+									<li><a href="https://josefina-find-your-music.herokuapp.com" target="_blank">Explore</a></li>
+                                {% endif %}  							
                                 <li></li>
                                 <li></li>
                                 <li></li>
@@ -122,7 +122,7 @@
 									<!-- paragraph -->
 									<h3 class="animated fadeInRightBig">Find Genre of your Song &amp; Find your favourite Music Albums.</h3>
 									<!-- button -->
-									<a href="#" class="animated fadeIn btn btn-theme">Check Here</a>
+									<a href="{{url_for('upload')}}" class="animated fadeIn btn btn-theme">Check Here</a>
 								</div>
 							</div>
 						</div>
@@ -136,7 +136,7 @@
 									<!-- paragraph -->
 									<h3 class="animated fadeInRightBig"></h3>
 									<!-- button -->
-									<a href="#" class="animated fadeIn btn btn-theme">Find Genre and Listen Now</a>
+									<a href="{{url_for('upload')}}" class="animated fadeIn btn btn-theme">Find Genre now</a>
 								</div>
 							</div>
 						</div>
@@ -287,7 +287,7 @@
 						<a class="h-twitter" href="#"><i class="fa fa-twitter"></i></a>
 					</div>
 					<!-- copy right -->
-					<p class="copy-right">&copy; copyright 2021, All rights are reserved.</p>
+					<p class="copy-right">&copy;Developed by Amogh, Arjun and Sanyam</p>
 				</div>
 			</footer>
 			<!-- footer end -->

@@ -16,6 +16,7 @@ from gridfs import GridFS
 from pymongo import MongoClient
 import sys
 import logging 
+from werkzeug.utils import secure_filename
 root = logging.getLogger()
 root.setLevel(logging.DEBUG)
 
@@ -25,13 +26,13 @@ formatter = logging.Formatter(
     '%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 ch.setFormatter(formatter)
 root.addHandler(ch)
+#print(os.listdir('F:\MIP-github\MUSIC_GENRE_RECOMENDATION_FLASK'))
 
 app = Flask(__name__,template_folder='template')
 
 model = pickle.load(open('model_svm.pkl','rb'))
 scaler = pickle.load(open('scaler.pkl','rb'))
 #model = joblib.load('model_4.mdl')
-
 
 app.config['MONGO_DBNAME'] = 'mip'
 app.config['MONGO_URI'] = 'mongodb+srv://amogh:amogh@cluster0.divgo.mongodb.net/db?retryWrites=true&w=majority'
@@ -40,14 +41,13 @@ mongo_client = MongoClient('mongodb+srv://amogh:amogh@cluster0.divgo.mongodb.net
 db = mongo_client['mip']
 grid_fs = GridFS(db)
 
-
+songs = []
 #home route
 @app.route('/')
 def index():
     if 'name' in session:
         message = session['name']
         return render_template('test.html',message=message) 
-
     return render_template('signin.html')
 
 #signup route
@@ -103,6 +103,15 @@ def test():
         text='Logged in'
         return render_template('test.html',text=text)
     return render_template('test.html')
+
+def get_songs():
+    local_songs = []
+    for f in os.listdir('F:/MIP-github/MUSIC_GENRE_RECOMENDATION_FLASK'):
+        if(f.endswith(".wav")):
+            local_songs.append(f)
+        else:
+            continue
+    return local_songs
 
 #fetch metadata from input song
 def getmetadata(filename):
@@ -160,15 +169,14 @@ def upload():
 #success => after genre prediction
 @app.route('/success', methods = ['POST'])
 def success():
+    #UPLOAD_FOLDER = os.path.join(app.root_path,'uploads')
     UPLOAD_FOLDER = '/uploads'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     if request.method == 'POST':
         f = request.files['file']
         #os.path.join('C:/Users/DELL/Desktop/projects/MIP_MusicPrediction_final/MUSIC_GENRE_RECOMENDATION_FLASK/uploads/',
-        f.save(f.filename)
+        f.save(secure_filename(f.filename))
         f_name = f.filename.split('.')
-
-       
 
         if(f_name[-1] != 'wav'):
             dst="file.wav"
@@ -197,48 +205,41 @@ def success():
     
 #Route to render GUI
 @app.route('/play')
-def show_entries():
-    general_Data = {
-        'title': 'Music Player'}
-        
-    files=db.fs.files
-    result=files.find_one(sort=[( '_id', -1 )])
-    
-    stream_entries = result
-    print(stream_entries)
-      
-    return render_template('play.html', entries=stream_entries, **general_Data)
+def play():
+    songs = get_songs()
+    print(songs)  
+    return render_template("play.html", songs=songs)
 
 #Route to stream music
-@app.route('/int:<stream_id>')
-def streammp3(stream_id):
-    def generate():
-        data = return_dict()
-        count = 1
-        for item in data:
-            if item['id'] == stream_id:
-                song = item['link']
-        with open(song, "rb") as fwav:
-            data = fwav.read(1024)
-            while data:
-                yield data
-                data = fwav.read(1024)
-                logging.debug('Music data fragment : ' + str(count))
-                count += 1
+# @app.route('/int:<stream_id>')
+# def streammp3(stream_id):
+#     def generate():
+#         data = return_dict()
+#         count = 1
+#         for item in data:
+#             if item['id'] == stream_id:
+#                 song = item['link']
+#         with open(song, "rb") as fwav:
+#             data = fwav.read(1024)
+#             while data:
+#                 yield data
+#                 data = fwav.read(1024)
+#                 logging.debug('Music data fragment : ' + str(count))
+#                 count += 1
                 
-    return Response(generate(), mimetype="audio/wav")
+#     return Response(generate(), mimetype="audio/wav")
 
 
 
-def return_dict():
-    #Dictionary to store music file information
-    files=db.fs.files
-    result=files.find_one(sort=[( '_id', -1 )])
-    dict_here = [
-        {'id': 1, 'name': 'test', 'link': 'hiphop.00006.wav', 'genre': 'hip'},
+# def return_dict():
+#     #Dictionary to store music file information
+#     files=db.fs.files
+#     result=files.find_one(sort=[( '_id', -1 )])
+#     dict_here = [
+#         {'id': 1, 'name': 'test', 'link': 'hiphop.00006.wav', 'genre': 'hip'},
         
-       ]
-    return dict_here
+#        ]
+#     return dict_here
 
 if __name__ == '__main__':
     
