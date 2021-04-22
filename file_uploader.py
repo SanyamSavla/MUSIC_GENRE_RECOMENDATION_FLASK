@@ -98,7 +98,7 @@ def home():
 @app.route('/')
 def index():
     if 'name' in session:
-        message='You are logged in as ' + session['name']
+        message = session['name']
         return render_template('test.html',message=message) 
 
     return render_template('signin.html')

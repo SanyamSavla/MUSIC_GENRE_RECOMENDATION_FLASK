@@ -83,14 +83,18 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
+                                <!-- {% if message %}  
+                                	<p><strong>User </strong></p> {{message}} <br>
+                                {% endif %}  -->
                                 {% if message %}  
-                                <p><strong>User </strong></p> {{message}} <br>
-                                        {% endif %} 
-								<li><a href="{{'register'}}">Register</a></li>
-								<li><a href="{{ url_for('index')}}">Login</a></li>
-                                {% if text %}  
-                                <li><a href="{{url_for('upload')}}">Genre Prediction </a></li>
-								<li><a href="{{ url_for('logout') }}">Logout</a></li>
+									<li><a href="{{url_for('upload')}}">Genre Prediction </a></li>
+									<li><a href="#">Explore</a></li>
+									<li><a href="#">{{ message }}</a></li>
+									<li><a href="{{ url_for('logout') }}">Logout</a></li>
+									
+								{% else %}
+									<li><a href="{{'register'}}">Register</a></li>
+									<li><a href="{{ url_for('index')}}">Login</a></li>
                                 {% endif %}  
 								<li><a href="#contact">Contact</a></li>
                                 <li></li>
