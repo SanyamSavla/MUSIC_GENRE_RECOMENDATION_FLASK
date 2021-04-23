@@ -1,68 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href="static/css/player.css" />
-    <title>Music Player</title>
-  </head>
-  <body>
-    <h1>Music Player</h1>
-    <!-- {% for song in songs %}
-        <p>{{song}}</p>
-    {% endfor %} -->
-    <!-- <p>{{songs[0]}}</p> -->
-    <div class="music-container" id="music-container">
-      <div class="music-info">
-        <h4 id="title"></h4>
-        <div class="progress-container" id="progress-container">
-          <div class="progress" id="progress"></div>
-        </div>
-      </div>
-      
-      <div id="play3">
-        <audio preload type="audio/wav" id="audio" ></audio>
-      </div>
-    
-      <div class="img-container">
-        <img src="static/images/cover.jpg" alt="music-cover" id="cover" />
-      </div>
-      <div class="navigation">
-        <button id="prev" class="action-btn">
-          <i class="fas fa-backward"></i>
-        </button>
-        <button id="play" class="action-btn action-btn-big" >
-          <i class="fas fa-play"></i>
-        </button>
-        <button id="next" class="action-btn">
-          <i class="fas fa-forward"></i>
-        </button>
-      </div>
-    </div>
-  
-    <!-- <button onclick="play()">Play test</button>
-    <button onclick="pause()">Pause test</button> -->
-    <script>     
-      // function play(){
-        
-      //     audioElement=document.getElementById("play2");
-      //     console.log('Playying')
-      //     audioElement.play();
-      // }
-
-      // function pause(){
-      //     audioElement=document.getElementById("play2");
-      //     console.log('Pausing')
-      //     audioElement.pause();
-      // }
-  </script>
-  <script >
-    const musicContainer = document.getElementById('music-container');
+const musicContainer = document.getElementById('music-container');
 const playBtn = document.getElementById('play');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
@@ -88,8 +24,8 @@ loadSong(songs[songIndex]);
 // Update song details
 function loadSong(song) {
   title.innerText = song;
-  audio.src = `./song/${song}`;
-  cover.src = "static/images/cover.jpg";
+  audio.src = `music/${song}.mp3`;
+cover.src = "static/images/cover.jpg";
 }
 
 // Play song
@@ -97,6 +33,7 @@ function playSong() {
   musicContainer.classList.add('play');
   playBtn.querySelector('i.fas').classList.remove('fa-play');
   playBtn.querySelector('i.fas').classList.add('fa-pause');
+
   audio.play();
 }
 
@@ -105,6 +42,7 @@ function pauseSong() {
   musicContainer.classList.remove('play');
   playBtn.querySelector('i.fas').classList.add('fa-play');
   playBtn.querySelector('i.fas').classList.remove('fa-pause');
+
   audio.pause();
 }
 
@@ -247,9 +185,3 @@ audio.addEventListener('timeupdate',DurTime);
 
 
 // /////////////////////////////////////////////////
-
-  </script>
-     
-    
-  </body>
-</html>

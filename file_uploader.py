@@ -8,7 +8,7 @@ import os
 from sklearn.preprocessing import MinMaxScaler
 from os import path
 from pydub import AudioSegment
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 from flask_pymongo import PyMongo
 import re
 import json
@@ -49,6 +49,12 @@ def index():
         message = session['name']
         return render_template('test.html',message=message) 
     return render_template('signin.html')
+
+
+#audio route
+@app.route('/song/<path:path>')
+def play2(path):
+    return send_from_directory('.', path)
 
 #signup route
 @app.route('/register', methods=['POST', 'GET'])
