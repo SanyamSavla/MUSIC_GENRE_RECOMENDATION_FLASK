@@ -8,6 +8,7 @@ import os
 from sklearn.preprocessing import MinMaxScaler
 from os import path
 from pydub import AudioSegment
+from pydub.playback import play
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_pymongo import PyMongo
 import re
@@ -45,10 +46,19 @@ def return_dict():
     files=db.fs.files
     result=files.find_one(sort=[( '_id', -1 )])
     dict_here = [
-        {'id': 1, 'name': 'test', 'link': 'hiphop.00006.wav', 'genre': 'hip'},
+        {'id': 1, 'name': 'test', 'link': '', 'genre': 'hip'},
         
        ]
     return dict_here
+
+def play_dict():
+    #Dictionary to store music file information
+    
+    play_dicti = [
+        {'id': 1, 'name': 'test', 'link': '', 'genre': 'hip'},
+        
+       ]
+    return play_dicti
 
 #Route to render GUI
 @app.route('/play')
@@ -60,19 +70,22 @@ def show_entries():
     result=files.find_one(sort=[( '_id', -1 )])
     
     stream_entries = result
-    print(stream_entries)
+    print((stream_entries))
       
     return render_template('play.html', entries=stream_entries, **general_Data)
 
 #Route to stream music
-@app.route('/int:<stream_id>')
+@app.route('/:<stream_id>')
 def streammp3(stream_id):
+    print("eeorr?")
     def generate():
-        data = return_dict()
+        
+        data = play_dict()
         count = 1
         for item in data:
-            if item['id'] == stream_id:
-                song = item['link']
+            print(item)
+            if item['1'] == stream_id:
+                song = item['filename']
         with open(song, "rb") as fwav:
             data = fwav.read(1024)
             while data:
@@ -82,6 +95,7 @@ def streammp3(stream_id):
                 count += 1
                 
     return Response(generate(), mimetype="audio/wav")
+
 
 
 @app.route('/home1')
@@ -228,11 +242,14 @@ def success():
         with grid_fs.new_file(filename=f.filename,name=session['name'],genre=genre_name,playid='1') as fp:
             fp.write(request.data)
             id=fp._id
-            
-        return render_template("success.html", name = file_name, genre = genre_name,entry=id)
+        
+        play={1:f.filename}   
+        return render_template("success.html", name = file_name, genre = genre_name,entry=id,play=play)
     
 if __name__ == '__main__':
     
     app.secret_key = 'mysecret'
     app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug = True)
+    
+    logging.debug("Started Server, Kindly visit http://localhost:" )
