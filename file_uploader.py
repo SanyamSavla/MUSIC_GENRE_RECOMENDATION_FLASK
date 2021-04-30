@@ -83,6 +83,7 @@ def admin():
        list1.append(i["num"])
        print(i["num"])
     print(dict1)
+    #dict1=sorted(dict1,key=dict1.get,reverse=True)
     return render_template('admin2.html',users=users,count=count,s=s,c=c,agg_result=agg_result,list1=json.dumps(list1),dict1=dict1)
 
 

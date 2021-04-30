@@ -89,7 +89,7 @@
                                 {% if message %}  
 									<li><a href="{{url_for('upload')}}">Genre Prediction </a></li>	
 									<li><a href="https://josefina-find-your-music.herokuapp.com/users/profile/10" target="_blank">Explore</a></li>		
-									<li><a href="#">Name:{{ message }}</a></li>
+									<li><a href="{{url_for('admin')}}">{{ message }}</a></li>
 									<li><a href="#contact">Contact</a></li>
 									<li><a href="{{ url_for('logout') }}">Logout</a></li>																
 								{% else %}
