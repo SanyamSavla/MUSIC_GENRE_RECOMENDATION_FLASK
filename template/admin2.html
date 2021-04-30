@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>
+			
+		</title>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<link
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link href="static/admin/material-dashboard.css" rel="stylesheet" />
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+			integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+			crossorigin="anonymous"
+		/>
+		<style>
+			.btn-group{
+				margin-bottom: 2px;
+				margin-top: 3px;
+			}
+
+			.btn-group > button {
+				margin: 2px !important;
+			}
+
+			.btn-group > button:hover {
+				border-color: linear-gradient(60deg, #7b1fa2, #913f9e);
+				background: linear-gradient(60deg, #7b1fa2, #913f9e);
+			}
+
+			#revenue-column-chart,
+			#products-revenue-pie-chart,
+			#orders-spline-chart {
+				height: 400px;
+				width: 93%;
+				align-content: center;
+				background-color: transparent;
+			}
+			.row {
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+		</style>
+
+		<!-- for graphs -->
+		<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</head>
+
+	<script>
+		$(function () {
+			$(".count").each(function () {
+				$(this)
+					.prop("Counter", 0)
+					.animate(
+						{
+							Counter: $(this).text(),
+						},
+						{
+							duration: 2000,
+							easing: "swing",
+							step: function (now) {
+								$(this).text(Math.ceil(now));
+							},
+						}
+					);
+			});
+			var dataPoints = [];
+			var productDataPoints = [];
+			var ordersDataPoints = [];
+
+			var newProductDataPoints = [];
+
+			CanvasJS.addColorSet("customColorSet", [
+				"#003f5c",
+				"#2f4b7c",
+				"#665191",
+				"#a05195",
+				"#d45087",
+				"#f95d6a",
+				"#ff7c43",
+				"#ffa600",
+			]);
+			// CanvasJS column chart to show revenue from Jan 2015 - Dec 2015
+			var revenueColumnChart = new CanvasJS.Chart("revenue-column-chart", {
+				colorSet: "customColorSet",
+				animationEnabled: true,
+				backgroundColor: "transparent",
+				theme: "theme2",
+				axisX: {
+					labelFontSize: 14,
+					labelFontColor: "white",
+					valueFormatString: "DD MMM YYYY",
+				},
+				axisY: {
+					labelFontSize: 14,
+					prefix: "₹",
+					labelFontColor: "white",
+				},
+				toolTip: {
+					borderThickness: 0,
+					cornerRadius: 0,
+				},
+				data: [
+					{
+						type: "column",
+						yValueFormatString: "₹ ###,###.##",
+						dataPoints: dataPoints,
+					},
+				],
+			});
+
+			//CanvasJS pie chart to show product wise annual revenue for 2015
+			var productsRevenuePieChart = new CanvasJS.Chart(
+				"products-revenue-pie-chart",
+				{
+					title: {
+						text: ""
+					},
+					colorSet: "customColorSet",
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14,
+					},
+					toolTip: {
+						borderThickness: 0,
+						content:
+							"<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
+						cornerRadius: 0,
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "square",
+							legendText: "{label}",
+							indexLabel: "{label}",
+							showInLegend: true,
+							startAngle: 90,
+							type: "pie",
+							dataPoints: productDataPoints,
+						},
+					],
+				}
+			);
+
+			//CanvasJS spline chart to show orders from Jan 2015 to Dec 2015
+			var ordersSplineChart = new CanvasJS.Chart("orders-spline-chart", {
+				colorSet: "customColorSet",
+				animationEnabled: true,
+				backgroundColor: "transparent",
+				theme: "theme2",
+				toolTip: {
+					borderThickness: 0,
+					cornerRadius: 0,
+				},
+				axisX: {
+					labelFontSize: 14,
+					labelFontColor: "#202040",
+					valueFormatString: "DD MMM YYYY",
+					labelFontWeight: "bold",
+				},
+				axisY: {
+					gridThickness: 0,
+					labelFontSize: 14,
+					lineThickness: 2,
+					labelFontColor: "#202040",
+					labelFontWeight: "bold",
+				},
+				data: [
+					{
+						markerColor: "#5b005c",
+						lineColor: "#f000ff",
+						type: "bar",
+						dataPoints: ordersDataPoints,
+					},
+				],
+			});
+
+			function addData(data) {
+				for (var i = 0; i < data.length; i++) {
+					dataPoints.push({
+						x: new Date(data[i]._id),
+						y: data[i].total,
+					});
+				}
+				//console.log("data",dataPoints);
+				revenueColumnChart.render();
+			}
+			function addProductData(data) {
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].soldQty && data[i].soldQty > 0) {
+						productDataPoints.push({
+							label: data[i].title,
+							y: data[i].soldQty * data[i].price,
+							name: data[i].title,
+						});
+					}
+				}
+				//console.log("productData",productDataPoints);
+				productsRevenuePieChart.render();
+			}
+
+			function addOrdersData(data) {
+				for (var i = 0; i < data.length; i++) {
+					ordersDataPoints.push({
+						x: new Date(data[i]._id),
+						y: data[i].count,
+					});
+				}
+				//console.log("orderData",ordersDataPoints);
+				ordersSplineChart.render();
+			}
+			$.getJSON("/api/daily-sales", addData);
+			$.getJSON("/api/product-sales/ayurveda", addProductData);
+			$.getJSON("/api/daily-orders-count", addOrdersData);
+
+			var updateChartOptions = {
+					title: {
+						text: ""
+					},
+					colorSet: "customColorSet",
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14,
+					},
+					toolTip: {
+						borderThickness: 0,
+						content:
+							"<span style='\"'color: {color};'\"'>{name}</span>: ₹ {y} (#percent%)",
+						cornerRadius: 0,
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "square",
+							legendText: "{label}",
+							indexLabel: "{label}",
+							showInLegend: true,
+							startAngle: 90,
+							type: "pie",
+							dataPoints: [],
+						},
+					],
+				}
+			function addNewProductData(data) {
+				console.log("data = ", data);
+				newProductDataPoints = [];
+				for (var i = 0; i < data.length; i++) {
+					if (data[i].soldQty && data[i].soldQty > 0) {
+						newProductDataPoints.push({
+							label: data[i].title,
+							y: data[i].soldQty * data[i].price,
+							name: data[i].title,
+						});
+					}
+				}
+				if(data.length <= 0){
+					updateChartOptions.title.text = "No Products purchased from this category"
+				} else {
+					updateChartOptions.title.text = ""
+				}
+				
+				updateChartOptions.data[0].dataPoints = newProductDataPoints;
+				productsRevenueNewPieChart = new CanvasJS.Chart("products-revenue-pie-chart", updateChartOptions);
+				productsRevenueNewPieChart.render();
+			}
+
+			$("#chart-ayurveda").click(function () {
+				$.getJSON("/api/product-sales/ayurveda", addNewProductData);
+			});
+			$("#chart-baby-and-mom-care").click(function () {
+				$.getJSON("/api/product-sales/baby-and-mom-care", addNewProductData);
+			});
+			$("#chart-diabetic-care").click(function () {
+				$.getJSON("/api/product-sales/diabetic-care", addNewProductData);
+			});
+			$("#chart-medicines").click(function () {
+				$.getJSON("/api/product-sales/medicines", addNewProductData);
+			});
+			$("#chart-health-conditions").click(function () {
+				$.getJSON("/api/product-sales/health-conditions", addNewProductData);
+			});
+			$("#chart-homeopathy").click(function () {
+				$.getJSON("/api/product-sales/homeopathy", addNewProductData);
+			});
+			$("#chart-nutritions").click(function () {
+				$.getJSON("/api/product-sales/nutritions", addNewProductData);
+			});
+			$("#chart-personal-care").click(function () {
+				$.getJSON("/api/product-sales/personal-care", addNewProductData);
+			});
+
+		});
+	</script>
+	<!-- end for graphs -->
+
+	<body class="dark-edition">
+		<div class="wrapper">
+			
+			<div class="main-panel">
+				<!-- Navbar -->
+				<nav
+					class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top"
+					id="navigation-example"
+				>
+					<div class="container-fluid">
+						<div class="navbar-wrapper">
+							<div class="row">
+								<a class="navbar-brand" href="javascript:void(0)">Dashboard</a>
+							</div>
+						</div>
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-toggle="collapse"
+							aria-controls="navigation-index"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+							data-target="#navigation-example"
+						>
+							<span class="sr-only">Toggle navigation</span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+							<span class="navbar-toggler-icon icon-bar"></span>
+						</button>
+					</div>
+				</nav>
+				<!-- End Navbar -->
+
+				<div class="content">
+					<div class="row justify-content-center">
+						<div class="col-sm-6 col-md-4">
+							<div style="text-align: center;" id="danger" class="alert alert-danger <% if(noMessages){ %> d-none <% } %>" >
+								<%= errMsg %>
+							</div>
+						</div>
+					</div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-warning card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">view_list</i>
+										</div>
+										<p class="card-category">USERS</p>
+										<h3 class="card-title">
+											<span class="count">{{users.count_documents({})}}</span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-success card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">view_list</i>
+										</div>
+										<p class="card-category">Songs Uploaded</p>
+										<h3 class="card-title">
+											 <span class="count">{{count}}<span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+								<div class="card card-stats">
+									<div class="card-header card-header-danger card-header-icon">
+										<div class="card-icon">
+											<i class="material-icons">view_list</i>
+										</div>
+										<p class="card-category">Genres</p>
+										<h3 class="card-title">
+											<span class="count">10</span>
+										</h3>
+									</div>
+									<div class="card-footer">
+										<div class="stats">
+											<i class="material-icons">update</i> Just Updated
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+						<div class="col-lg-12 col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title">Genres and Occurences</h4>
+								</div>
+								<div class="card-body table-responsive">
+									<table class="table table-hover">
+										<thead class="text-warning">
+										
+											<th>Genre Name</th>
+											<th>Number of Occureces</th>
+
+											
+										</thead>
+										<tbody>
+											{% for i,j in dict1.items() %}
+											<tr>
+												<td>{{ i }}</td>
+												<td>{{ j }}</td>
+												
+											</tr>
+											{%endfor%}
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12">
+								<div class="card">
+									<div class="card-header card-header-primary">
+										<h4 class="card-title">Data</h4>
+									</div>
+									<div class="card-body table-responsive">
+										<table class="table table-hover">
+											<thead class="text-warning">
+												<th>Name</th>
+												<th>Song</th>
+												<th>Genre</th>
+											</thead>
+											<tbody>
+												{% for cursor in s %}
+												<tr>
+													<td>{{ cursor.name }}</td>
+													<td>{{ cursor.filename}}</td>
+													<td>{{ cursor.genre}}</td>
+												</tr>
+												{%endfor%}
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							
+						
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js" charset="utf-8"></script>
+<script src="https://unpkg.com/default-passive-events"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="static/admin/bootstrap-material-design.min.js"></script>
+<script src="static/admin/perfect-scrollbar.jquery.min.js"></script>
+<script src="static/admin/chartist.min.js"></script>
+<script src="static/admin/bootstrap-notify.js"></script>
+<script src="static/admin/material-dashboard.js?v=2.1.0"></script>
+
+
+<script>
+  $(document).ready(function() {
+    $().ready(function() {
+      $sidebar = $('.sidebar');
+
+      $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+      $full_page = $('.full-page');
+
+      $sidebar_responsive = $('body > .navbar-collapse');
+
+      window_width = $(window).width();
+
+      $('.fixed-plugin a').click(function(event) {
+        // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+        if ($(this).hasClass('switch-trigger')) {
+          if (event.stopPropagation) {
+            event.stopPropagation();
+          } else if (window.event) {
+            window.event.cancelBubble = true;
+          }
+        }
+      });
+
+      $('.fixed-plugin .active-color span').click(function() {
+        $full_page_background = $('.full-page-background');
+
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data-color', new_color);
+        }
+
+        if ($full_page.length != 0) {
+          $full_page.attr('filter-color', new_color);
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.attr('data-color', new_color);
+        }
+      });
+
+      $('.fixed-plugin .background-color .badge').click(function() {
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+
+        var new_color = $(this).data('background-color');
+
+        if ($sidebar.length != 0) {
+          $sidebar.attr('data-background-color', new_color);
+        }
+      });
+
+      $('.fixed-plugin .img-holder').click(function() {
+        $full_page_background = $('.full-page-background');
+
+        $(this).parent('li').siblings().removeClass('active');
+        $(this).parent('li').addClass('active');
+
+
+        var new_image = $(this).find("img").attr('src');
+
+        if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+          $sidebar_img_container.fadeOut('fast', function() {
+            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+            $sidebar_img_container.fadeIn('fast');
+          });
+        }
+
+        if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+          var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+          $full_page_background.fadeOut('fast', function() {
+            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+            $full_page_background.fadeIn('fast');
+          });
+        }
+
+        if ($('.switch-sidebar-image input:checked').length == 0) {
+          var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+          var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+          $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+          $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+        }
+
+        if ($sidebar_responsive.length != 0) {
+          $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+        }
+      });
+
+      $('.switch-sidebar-image input').change(function() {
+        $full_page_background = $('.full-page-background');
+
+        $input = $(this);
+
+        if ($input.is(':checked')) {
+          if ($sidebar_img_container.length != 0) {
+            $sidebar_img_container.fadeIn('fast');
+            $sidebar.attr('data-image', '#');
+          }
+
+          if ($full_page_background.length != 0) {
+            $full_page_background.fadeIn('fast');
+            $full_page.attr('data-image', '#');
+          }
+
+          background_image = true;
+        } else {
+          if ($sidebar_img_container.length != 0) {
+            $sidebar.removeAttr('data-image');
+            $sidebar_img_container.fadeOut('fast');
+          }
+
+          if ($full_page_background.length != 0) {
+            $full_page.removeAttr('data-image', '#');
+            $full_page_background.fadeOut('fast');
+          }
+
+          background_image = false;
+        }
+      });
+
+      $('.switch-sidebar-mini input').change(function() {
+        $body = $('body');
+
+        $input = $(this);
+
+        if (md.misc.sidebar_mini_active == true) {
+          $('body').removeClass('sidebar-mini');
+          md.misc.sidebar_mini_active = false;
+
+          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+        } else {
+
+          $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+          setTimeout(function() {
+            $('body').addClass('sidebar-mini');
+
+            md.misc.sidebar_mini_active = true;
+          }, 300);
+        }
+
+      //   // we simulate the window Resize so the charts will get updated in realtime.
+      //   var simulateWindowResize = setInterval(function() {
+      //     window.dispatchEvent(new Event('resize'));
+      //   }, 180);
+
+      //   // we stop the simulation of Window Resize after the animations are completed
+      //   setTimeout(function() {
+      //     clearInterval(simulateWindowResize);
+      //   }, 1000);
+
+      });
+    });
+  });
+</script>
