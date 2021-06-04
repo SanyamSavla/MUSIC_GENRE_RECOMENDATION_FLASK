@@ -1,3 +1,11 @@
+<div align="center">
+
+[![](https://img.shields.io/badge/Made_with-Python-green?style=for-the-badge&logo=node.js)](https://nodejs.org/en/)
+[![](https://img.shields.io/badge/Made_with-Flask-yellow?style=for-the-badge&logo=react)](https://reactjs.org/docs/getting-started.html)
+[![](https://img.shields.io/badge/Database-MongoDB-red?style=for-the-badge&logo=mongodb)](mongodb.com "MongoDB")
+
+</div>
+
 # Music Genre Classification
 
 A website where you can enter a inout file and get to know it's genre, one can search for songs, create playlists, add/delete songs to playlists and play songs.
