@@ -10,9 +10,9 @@ To setup and use the website, follow the steps mentioned below:
 
 * python
 * pip
-  ```
-  python get-pip.py
-  ```
+```
+python get-pip.py
+```
 ### Installing dependencies
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the dependencies. They are listed in requirements.txt file. Setup a virtual environment and then type the command:
