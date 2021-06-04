@@ -21,9 +21,11 @@ To setup and use the website, follow the steps mentioned below:
 ```
 python get-pip.py
 ```
+* Clone the repository
+
 ### Installing dependencies
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the dependencies. They are listed in requirements.txt file. Setup a virtual environment and then type the command:
+Move to the installed folder and use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the dependencies. They are listed in requirements.txt file. Setup a virtual environment and then type the command:
 
 ```
 pip install requirements.txt
@@ -31,7 +33,7 @@ pip install requirements.txt
 
 ### Usage
 
-Go to the root folder and run the following commands
+Go to the root folder and run the following commands:
 ```
 python model.py
 python file_uploader.py
