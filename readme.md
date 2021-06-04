@@ -1,7 +1,7 @@
 <div align="center">
 
-[![](https://img.shields.io/badge/Made_with-Python-green?style=for-the-badge&logo=node.js)](https://nodejs.org/en/)
-[![](https://img.shields.io/badge/Made_with-Flask-yellow?style=for-the-badge&logo=react)](https://reactjs.org/docs/getting-started.html)
+[![](https://img.shields.io/badge/Made_with-Python-green?style=for-the-badge&logo=node.js)](https://www.python.org/)
+[![](https://img.shields.io/badge/Made_with-Flask-yellow?style=for-the-badge&logo=react)](https://flask.palletsprojects.com/en/2.0.x/)
 [![](https://img.shields.io/badge/Database-MongoDB-red?style=for-the-badge&logo=mongodb)](mongodb.com "MongoDB")
 
 </div>
