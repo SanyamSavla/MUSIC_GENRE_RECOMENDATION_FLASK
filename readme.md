@@ -28,7 +28,7 @@ python get-pip.py
 Move to the installed folder and use the package manager [pip](https://pip.pypa.io/en/stable/) to install all the dependencies. They are listed in requirements.txt file. Setup a virtual environment and then type the command:
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ### Usage
